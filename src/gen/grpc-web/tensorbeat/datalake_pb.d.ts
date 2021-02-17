@@ -3,43 +3,43 @@ import * as jspb from 'google-protobuf'
 import * as tensorbeat_common_pb from '../tensorbeat/common_pb';
 
 
-export class GetSongsRequest extends jspb.Message {
+export class GetSongsByTagsRequest extends jspb.Message {
   getTagsMap(): jspb.Map<string, string>;
-  clearTagsMap(): GetSongsRequest;
+  clearTagsMap(): GetSongsByTagsRequest;
 
-  getOperator(): LogicalOperator;
-  setOperator(value: LogicalOperator): GetSongsRequest;
+  getFilter(): Filter;
+  setFilter(value: Filter): GetSongsByTagsRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetSongsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetSongsRequest): GetSongsRequest.AsObject;
-  static serializeBinaryToWriter(message: GetSongsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetSongsRequest;
-  static deserializeBinaryFromReader(message: GetSongsRequest, reader: jspb.BinaryReader): GetSongsRequest;
+  toObject(includeInstance?: boolean): GetSongsByTagsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSongsByTagsRequest): GetSongsByTagsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetSongsByTagsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSongsByTagsRequest;
+  static deserializeBinaryFromReader(message: GetSongsByTagsRequest, reader: jspb.BinaryReader): GetSongsByTagsRequest;
 }
 
-export namespace GetSongsRequest {
+export namespace GetSongsByTagsRequest {
   export type AsObject = {
     tagsMap: Array<[string, string]>,
-    operator: LogicalOperator,
+    filter: Filter,
   }
 }
 
-export class GetSongsResponse extends jspb.Message {
+export class GetSongsByTagsResponse extends jspb.Message {
   getSongsList(): Array<tensorbeat_common_pb.File>;
-  setSongsList(value: Array<tensorbeat_common_pb.File>): GetSongsResponse;
-  clearSongsList(): GetSongsResponse;
+  setSongsList(value: Array<tensorbeat_common_pb.File>): GetSongsByTagsResponse;
+  clearSongsList(): GetSongsByTagsResponse;
   addSongs(value?: tensorbeat_common_pb.File, index?: number): tensorbeat_common_pb.File;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetSongsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetSongsResponse): GetSongsResponse.AsObject;
-  static serializeBinaryToWriter(message: GetSongsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetSongsResponse;
-  static deserializeBinaryFromReader(message: GetSongsResponse, reader: jspb.BinaryReader): GetSongsResponse;
+  toObject(includeInstance?: boolean): GetSongsByTagsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSongsByTagsResponse): GetSongsByTagsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetSongsByTagsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSongsByTagsResponse;
+  static deserializeBinaryFromReader(message: GetSongsByTagsResponse, reader: jspb.BinaryReader): GetSongsByTagsResponse;
 }
 
-export namespace GetSongsResponse {
+export namespace GetSongsByTagsResponse {
   export type AsObject = {
     songsList: Array<tensorbeat_common_pb.File.AsObject>,
   }
@@ -163,9 +163,82 @@ export namespace RemoveTagsResponse {
   }
 }
 
-export enum LogicalOperator { 
-  UNKNOWN_LOGICAL_OPERATOR = 0,
-  OR = 1,
-  AND = 2,
-  NOT = 3,
+export class GetAllSongsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAllSongsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAllSongsRequest): GetAllSongsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetAllSongsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAllSongsRequest;
+  static deserializeBinaryFromReader(message: GetAllSongsRequest, reader: jspb.BinaryReader): GetAllSongsRequest;
+}
+
+export namespace GetAllSongsRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetAllSongsResponse extends jspb.Message {
+  getSongsList(): Array<tensorbeat_common_pb.File>;
+  setSongsList(value: Array<tensorbeat_common_pb.File>): GetAllSongsResponse;
+  clearSongsList(): GetAllSongsResponse;
+  addSongs(value?: tensorbeat_common_pb.File, index?: number): tensorbeat_common_pb.File;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetAllSongsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetAllSongsResponse): GetAllSongsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetAllSongsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetAllSongsResponse;
+  static deserializeBinaryFromReader(message: GetAllSongsResponse, reader: jspb.BinaryReader): GetAllSongsResponse;
+}
+
+export namespace GetAllSongsResponse {
+  export type AsObject = {
+    songsList: Array<tensorbeat_common_pb.File.AsObject>,
+  }
+}
+
+export class GetSongsByIDsRequest extends jspb.Message {
+  getIdsList(): Array<string>;
+  setIdsList(value: Array<string>): GetSongsByIDsRequest;
+  clearIdsList(): GetSongsByIDsRequest;
+  addIds(value: string, index?: number): GetSongsByIDsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSongsByIDsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSongsByIDsRequest): GetSongsByIDsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetSongsByIDsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSongsByIDsRequest;
+  static deserializeBinaryFromReader(message: GetSongsByIDsRequest, reader: jspb.BinaryReader): GetSongsByIDsRequest;
+}
+
+export namespace GetSongsByIDsRequest {
+  export type AsObject = {
+    idsList: Array<string>,
+  }
+}
+
+export class GetSongsByIDsResponse extends jspb.Message {
+  getSongsList(): Array<tensorbeat_common_pb.File>;
+  setSongsList(value: Array<tensorbeat_common_pb.File>): GetSongsByIDsResponse;
+  clearSongsList(): GetSongsByIDsResponse;
+  addSongs(value?: tensorbeat_common_pb.File, index?: number): tensorbeat_common_pb.File;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSongsByIDsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSongsByIDsResponse): GetSongsByIDsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetSongsByIDsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSongsByIDsResponse;
+  static deserializeBinaryFromReader(message: GetSongsByIDsResponse, reader: jspb.BinaryReader): GetSongsByIDsResponse;
+}
+
+export namespace GetSongsByIDsResponse {
+  export type AsObject = {
+    songsList: Array<tensorbeat_common_pb.File.AsObject>,
+  }
+}
+
+export enum Filter { 
+  ANY = 0,
+  ALL = 1,
+  NONE = 2,
 }

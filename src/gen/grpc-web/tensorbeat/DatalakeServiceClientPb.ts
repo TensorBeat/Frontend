@@ -35,44 +35,124 @@ export class DatalakeServiceClient {
     this.options_ = options;
   }
 
-  methodInfoGetSongs = new grpcWeb.AbstractClientBase.MethodInfo(
-    tensorbeat_datalake_pb.GetSongsResponse,
-    (request: tensorbeat_datalake_pb.GetSongsRequest) => {
+  methodInfoGetAllSongs = new grpcWeb.AbstractClientBase.MethodInfo(
+    tensorbeat_datalake_pb.GetAllSongsResponse,
+    (request: tensorbeat_datalake_pb.GetAllSongsRequest) => {
       return request.serializeBinary();
     },
-    tensorbeat_datalake_pb.GetSongsResponse.deserializeBinary
+    tensorbeat_datalake_pb.GetAllSongsResponse.deserializeBinary
   );
 
-  getSongs(
-    request: tensorbeat_datalake_pb.GetSongsRequest,
-    metadata: grpcWeb.Metadata | null): Promise<tensorbeat_datalake_pb.GetSongsResponse>;
+  getAllSongs(
+    request: tensorbeat_datalake_pb.GetAllSongsRequest,
+    metadata: grpcWeb.Metadata | null): Promise<tensorbeat_datalake_pb.GetAllSongsResponse>;
 
-  getSongs(
-    request: tensorbeat_datalake_pb.GetSongsRequest,
+  getAllSongs(
+    request: tensorbeat_datalake_pb.GetAllSongsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: tensorbeat_datalake_pb.GetSongsResponse) => void): grpcWeb.ClientReadableStream<tensorbeat_datalake_pb.GetSongsResponse>;
+               response: tensorbeat_datalake_pb.GetAllSongsResponse) => void): grpcWeb.ClientReadableStream<tensorbeat_datalake_pb.GetAllSongsResponse>;
 
-  getSongs(
-    request: tensorbeat_datalake_pb.GetSongsRequest,
+  getAllSongs(
+    request: tensorbeat_datalake_pb.GetAllSongsRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: tensorbeat_datalake_pb.GetSongsResponse) => void) {
+               response: tensorbeat_datalake_pb.GetAllSongsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/tensorbeat.datalake.DatalakeService/GetSongs',
+          '/tensorbeat.datalake.DatalakeService/GetAllSongs',
         request,
         metadata || {},
-        this.methodInfoGetSongs,
+        this.methodInfoGetAllSongs,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/tensorbeat.datalake.DatalakeService/GetSongs',
+      '/tensorbeat.datalake.DatalakeService/GetAllSongs',
     request,
     metadata || {},
-    this.methodInfoGetSongs);
+    this.methodInfoGetAllSongs);
+  }
+
+  methodInfoGetSongsByIDs = new grpcWeb.AbstractClientBase.MethodInfo(
+    tensorbeat_datalake_pb.GetSongsByIDsResponse,
+    (request: tensorbeat_datalake_pb.GetSongsByIDsRequest) => {
+      return request.serializeBinary();
+    },
+    tensorbeat_datalake_pb.GetSongsByIDsResponse.deserializeBinary
+  );
+
+  getSongsByIDs(
+    request: tensorbeat_datalake_pb.GetSongsByIDsRequest,
+    metadata: grpcWeb.Metadata | null): Promise<tensorbeat_datalake_pb.GetSongsByIDsResponse>;
+
+  getSongsByIDs(
+    request: tensorbeat_datalake_pb.GetSongsByIDsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: tensorbeat_datalake_pb.GetSongsByIDsResponse) => void): grpcWeb.ClientReadableStream<tensorbeat_datalake_pb.GetSongsByIDsResponse>;
+
+  getSongsByIDs(
+    request: tensorbeat_datalake_pb.GetSongsByIDsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: tensorbeat_datalake_pb.GetSongsByIDsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/tensorbeat.datalake.DatalakeService/GetSongsByIDs',
+        request,
+        metadata || {},
+        this.methodInfoGetSongsByIDs,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/tensorbeat.datalake.DatalakeService/GetSongsByIDs',
+    request,
+    metadata || {},
+    this.methodInfoGetSongsByIDs);
+  }
+
+  methodInfoGetSongsByTags = new grpcWeb.AbstractClientBase.MethodInfo(
+    tensorbeat_datalake_pb.GetSongsByTagsResponse,
+    (request: tensorbeat_datalake_pb.GetSongsByTagsRequest) => {
+      return request.serializeBinary();
+    },
+    tensorbeat_datalake_pb.GetSongsByTagsResponse.deserializeBinary
+  );
+
+  getSongsByTags(
+    request: tensorbeat_datalake_pb.GetSongsByTagsRequest,
+    metadata: grpcWeb.Metadata | null): Promise<tensorbeat_datalake_pb.GetSongsByTagsResponse>;
+
+  getSongsByTags(
+    request: tensorbeat_datalake_pb.GetSongsByTagsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: tensorbeat_datalake_pb.GetSongsByTagsResponse) => void): grpcWeb.ClientReadableStream<tensorbeat_datalake_pb.GetSongsByTagsResponse>;
+
+  getSongsByTags(
+    request: tensorbeat_datalake_pb.GetSongsByTagsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: tensorbeat_datalake_pb.GetSongsByTagsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/tensorbeat.datalake.DatalakeService/GetSongsByTags',
+        request,
+        metadata || {},
+        this.methodInfoGetSongsByTags,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/tensorbeat.datalake.DatalakeService/GetSongsByTags',
+    request,
+    metadata || {},
+    this.methodInfoGetSongsByTags);
   }
 
   methodInfoAddSongs = new grpcWeb.AbstractClientBase.MethodInfo(
