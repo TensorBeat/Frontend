@@ -4,6 +4,7 @@ import {Helmet} from "react-helmet";
 
 type PageProps = {
     title?: string
+    page?: string
     children?: React.ReactNode
 }
 
@@ -26,10 +27,10 @@ export default function Page(props: PageProps) {
                             <Nav className={"flex-column"}>
                                 <li className={"nav-item"}>
                                     <a className={"nav-link nav-h1"} href={"/"}>Overview</a>
-                                    <a className={"nav-link"} href={"/songs"}>Songs</a>
-                                    <a className={"nav-link"} href={"/"}>Other option</a>
-                                    <a className={"nav-link"} href={"/"}>Option 3</a>
-                                    <a className={"nav-link"} href={"/"}>Final option</a>
+                                    <a className={`nav-link ${props.page === "songs" ? "active" : ""}`} href={"/songs"}>Songs</a>
+                                    <a className={`nav-link ${props.page === "test" ? "active" : ""}`} href={"/"}>Other option</a>
+                                    <a className={`nav-link ${props.page === "test2" ? "active" : ""}`} href={"/"}>Option 3</a>
+                                    <a className={`nav-link ${props.page === "test3" ? "active" : ""}`} href={"/"}>Final option</a>
                                 </li>
 
                             </Nav>

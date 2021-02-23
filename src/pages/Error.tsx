@@ -7,14 +7,12 @@ type ErrorProps = {
     message?: string
 }
 
-const messages: { [key: string]: string} = {
-    404: "This resource doesn't exist",
-    500: "Something went wrong",
-}
-
-console.log(messages);
-
 export function Error(props: ErrorProps) {
+
+    const messages: { [key: string]: string} = {
+        404: "This resource doesn't exist",
+        500: "Something went wrong",
+    }
 
     return (
         <div>
