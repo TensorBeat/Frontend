@@ -18,7 +18,7 @@
     "bootstrap": "^4.6.0",
     "google-protobuf": "^3.15.0-rc.1",
     "grpc-web": "^1.2.1",
-    "hookrouter": "^1.2.5",
+    "hookrouter": "^1.2.3",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
