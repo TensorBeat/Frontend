@@ -18,17 +18,6 @@ export default function Songs() {
 
     const [songs, setSongs] = useState<SongEntry[]>([]);
 
-    // for (let i = 0; i < 10; i++) {
-    //     const song: SongEntry = {
-    //         id: i + "",
-    //         name: "songData.getName()",
-    //         artist: "Artist",
-    //         genre: "genre",
-    //         uri: "songData.getUri()",
-    //     }
-    //     songs.push(song)
-    // }
-
     useEffect(() => {
         const fetchData = () => {
             const client = new DatalakeServiceClient(
@@ -49,9 +38,7 @@ export default function Songs() {
                         rating: tags.get("rating"),
                         uri: songData.getUri(),
                     }
-                    for (let i = 0; i < 100; i++) {
-                        loadedSongs.push({...song, id: i + ""});
-                    }
+                    loadedSongs.push(song);
                 })
                 setSongs([...songs, ...loadedSongs]);
             });
