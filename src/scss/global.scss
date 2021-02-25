@@ -23,3 +23,27 @@
     font-weight: 500;
     color: rgba(0, 0, 0, 0.85) !important;
 }
+
+// individual row class is removed when closing, so we have to use this one
+.songs-table .row-expansion-style {
+    background-color: $light;
+    table {
+        @extend .table-sm;
+        td {
+            border: none !important;
+        }
+        tr:hover {
+            background-color: $light;
+        }
+    }
+}
+
+
+// TODO: make this animation a little nicer
+.songs-table .row-expand-slide-appear-active {
+    transition: max-height 2s linear !important;
+}
+
+.songs-table .row-expand-slide-exit-active {
+    transition: max-height 0.4s cubic-bezier(0, 0.95, 0, 0.95) !important;
+}
