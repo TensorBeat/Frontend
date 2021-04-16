@@ -312,7 +312,9 @@ proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.toObject = function(op
 proto.tensorbeat.datalake.GetSongsByTagsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     tagsMap: (f = msg.getTagsMap()) ? f.toObject(includeInstance, undefined) : [],
-    filter: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    filter: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -359,6 +361,14 @@ proto.tensorbeat.datalake.GetSongsByTagsRequest.deserializeBinaryFromReader = fu
       var value = /** @type {!proto.tensorbeat.datalake.Filter} */ (reader.readEnum());
       msg.setFilter(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPageToken(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPageSize(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -396,6 +406,20 @@ proto.tensorbeat.datalake.GetSongsByTagsRequest.serializeBinaryToWriter = functi
   if (f !== 0.0) {
     writer.writeEnum(
       2,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeInt64(
+      3,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 4));
+  if (f != null) {
+    writer.writeInt64(
+      4,
       f
     );
   }
@@ -442,6 +466,78 @@ proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.setFilter = function(v
 };
 
 
+/**
+ * optional int64 page_token = 3;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.getPageToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetSongsByTagsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.tensorbeat.datalake.GetSongsByTagsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.clearPageToken = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.hasPageToken = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional int64 page_size = 4;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetSongsByTagsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.tensorbeat.datalake.GetSongsByTagsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.clearPageSize = function() {
+  return jspb.Message.setField(this, 4, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.tensorbeat.datalake.GetSongsByTagsRequest.prototype.hasPageSize = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -482,7 +578,9 @@ proto.tensorbeat.datalake.GetSongsByTagsResponse.prototype.toObject = function(o
 proto.tensorbeat.datalake.GetSongsByTagsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     songsList: jspb.Message.toObjectList(msg.getSongsList(),
-    tensorbeat_common_pb.File.toObject, includeInstance)
+    tensorbeat_common_pb.File.toObject, includeInstance),
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    totalSize: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -524,6 +622,14 @@ proto.tensorbeat.datalake.GetSongsByTagsResponse.deserializeBinaryFromReader = f
       reader.readMessage(value,tensorbeat_common_pb.File.deserializeBinaryFromReader);
       msg.addSongs(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setNextPageToken(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalSize(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -559,6 +665,20 @@ proto.tensorbeat.datalake.GetSongsByTagsResponse.serializeBinaryToWriter = funct
       1,
       f,
       tensorbeat_common_pb.File.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextPageToken();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = message.getTotalSize();
+  if (f !== 0) {
+    writer.writeInt64(
+      3,
+      f
     );
   }
 };
@@ -599,6 +719,42 @@ proto.tensorbeat.datalake.GetSongsByTagsResponse.prototype.addSongs = function(o
  */
 proto.tensorbeat.datalake.GetSongsByTagsResponse.prototype.clearSongsList = function() {
   return this.setSongsList([]);
+};
+
+
+/**
+ * optional int64 next_page_token = 2;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetSongsByTagsResponse.prototype.getNextPageToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetSongsByTagsResponse} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByTagsResponse.prototype.setNextPageToken = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int64 total_size = 3;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetSongsByTagsResponse.prototype.getTotalSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetSongsByTagsResponse} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByTagsResponse.prototype.setTotalSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -1510,7 +1666,8 @@ proto.tensorbeat.datalake.GetAllSongsRequest.prototype.toObject = function(opt_i
  */
 proto.tensorbeat.datalake.GetAllSongsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    pageToken: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -1547,6 +1704,14 @@ proto.tensorbeat.datalake.GetAllSongsRequest.deserializeBinaryFromReader = funct
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPageToken(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPageSize(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1576,6 +1741,92 @@ proto.tensorbeat.datalake.GetAllSongsRequest.prototype.serializeBinary = functio
  */
 proto.tensorbeat.datalake.GetAllSongsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = /** @type {number} */ (jspb.Message.getField(message, 1));
+  if (f != null) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int64 page_token = 1;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetAllSongsRequest.prototype.getPageToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetAllSongsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetAllSongsRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.tensorbeat.datalake.GetAllSongsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetAllSongsRequest.prototype.clearPageToken = function() {
+  return jspb.Message.setField(this, 1, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.tensorbeat.datalake.GetAllSongsRequest.prototype.hasPageToken = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional int64 page_size = 2;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetAllSongsRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetAllSongsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetAllSongsRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.tensorbeat.datalake.GetAllSongsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetAllSongsRequest.prototype.clearPageSize = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.tensorbeat.datalake.GetAllSongsRequest.prototype.hasPageSize = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -1619,7 +1870,9 @@ proto.tensorbeat.datalake.GetAllSongsResponse.prototype.toObject = function(opt_
 proto.tensorbeat.datalake.GetAllSongsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     songsList: jspb.Message.toObjectList(msg.getSongsList(),
-    tensorbeat_common_pb.File.toObject, includeInstance)
+    tensorbeat_common_pb.File.toObject, includeInstance),
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    totalSize: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -1661,6 +1914,14 @@ proto.tensorbeat.datalake.GetAllSongsResponse.deserializeBinaryFromReader = func
       reader.readMessage(value,tensorbeat_common_pb.File.deserializeBinaryFromReader);
       msg.addSongs(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setNextPageToken(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalSize(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1696,6 +1957,20 @@ proto.tensorbeat.datalake.GetAllSongsResponse.serializeBinaryToWriter = function
       1,
       f,
       tensorbeat_common_pb.File.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextPageToken();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = message.getTotalSize();
+  if (f !== 0) {
+    writer.writeInt64(
+      3,
+      f
     );
   }
 };
@@ -1739,6 +2014,42 @@ proto.tensorbeat.datalake.GetAllSongsResponse.prototype.clearSongsList = functio
 };
 
 
+/**
+ * optional int64 next_page_token = 2;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetAllSongsResponse.prototype.getNextPageToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetAllSongsResponse} returns this
+ */
+proto.tensorbeat.datalake.GetAllSongsResponse.prototype.setNextPageToken = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int64 total_size = 3;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetAllSongsResponse.prototype.getTotalSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetAllSongsResponse} returns this
+ */
+proto.tensorbeat.datalake.GetAllSongsResponse.prototype.setTotalSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -1778,7 +2089,9 @@ proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.toObject = function(opt
  */
 proto.tensorbeat.datalake.GetSongsByIDsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    idsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    idsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -1819,6 +2132,14 @@ proto.tensorbeat.datalake.GetSongsByIDsRequest.deserializeBinaryFromReader = fun
       var value = /** @type {string} */ (reader.readString());
       msg.addIds(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPageToken(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPageSize(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1852,6 +2173,20 @@ proto.tensorbeat.datalake.GetSongsByIDsRequest.serializeBinaryToWriter = functio
   if (f.length > 0) {
     writer.writeRepeatedString(
       1,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 2));
+  if (f != null) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeInt64(
+      3,
       f
     );
   }
@@ -1895,6 +2230,78 @@ proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.clearIdsList = function
 };
 
 
+/**
+ * optional int64 page_token = 2;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.getPageToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetSongsByIDsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.tensorbeat.datalake.GetSongsByIDsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.clearPageToken = function() {
+  return jspb.Message.setField(this, 2, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.hasPageToken = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional int64 page_size = 3;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetSongsByIDsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.tensorbeat.datalake.GetSongsByIDsRequest} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.clearPageSize = function() {
+  return jspb.Message.setField(this, 3, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.tensorbeat.datalake.GetSongsByIDsRequest.prototype.hasPageSize = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -1935,7 +2342,9 @@ proto.tensorbeat.datalake.GetSongsByIDsResponse.prototype.toObject = function(op
 proto.tensorbeat.datalake.GetSongsByIDsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     songsList: jspb.Message.toObjectList(msg.getSongsList(),
-    tensorbeat_common_pb.File.toObject, includeInstance)
+    tensorbeat_common_pb.File.toObject, includeInstance),
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    totalSize: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -1977,6 +2386,14 @@ proto.tensorbeat.datalake.GetSongsByIDsResponse.deserializeBinaryFromReader = fu
       reader.readMessage(value,tensorbeat_common_pb.File.deserializeBinaryFromReader);
       msg.addSongs(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setNextPageToken(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalSize(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2012,6 +2429,20 @@ proto.tensorbeat.datalake.GetSongsByIDsResponse.serializeBinaryToWriter = functi
       1,
       f,
       tensorbeat_common_pb.File.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextPageToken();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
+    );
+  }
+  f = message.getTotalSize();
+  if (f !== 0) {
+    writer.writeInt64(
+      3,
+      f
     );
   }
 };
@@ -2052,6 +2483,42 @@ proto.tensorbeat.datalake.GetSongsByIDsResponse.prototype.addSongs = function(op
  */
 proto.tensorbeat.datalake.GetSongsByIDsResponse.prototype.clearSongsList = function() {
   return this.setSongsList([]);
+};
+
+
+/**
+ * optional int64 next_page_token = 2;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetSongsByIDsResponse.prototype.getNextPageToken = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetSongsByIDsResponse} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByIDsResponse.prototype.setNextPageToken = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional int64 total_size = 3;
+ * @return {number}
+ */
+proto.tensorbeat.datalake.GetSongsByIDsResponse.prototype.getTotalSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.tensorbeat.datalake.GetSongsByIDsResponse} returns this
+ */
+proto.tensorbeat.datalake.GetSongsByIDsResponse.prototype.setTotalSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

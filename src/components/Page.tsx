@@ -35,7 +35,7 @@ export default function Page(props: PageProps) {
 
                             </Nav>
                         </div>
-                        <main className={"col"}>
+                        <main className={"col main-content p-3 pr-4"}>
                             {props.children}
                         </main>
                     </Row>

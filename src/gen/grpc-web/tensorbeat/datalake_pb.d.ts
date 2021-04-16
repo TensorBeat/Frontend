@@ -10,6 +10,16 @@ export class GetSongsByTagsRequest extends jspb.Message {
   getFilter(): Filter;
   setFilter(value: Filter): GetSongsByTagsRequest;
 
+  getPageToken(): number;
+  setPageToken(value: number): GetSongsByTagsRequest;
+
+  getPageSize(): number;
+  setPageSize(value: number): GetSongsByTagsRequest;
+
+  getPageTokenCase(): GetSongsByTagsRequest.PageTokenCase;
+
+  getPageSizeCase(): GetSongsByTagsRequest.PageSizeCase;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSongsByTagsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetSongsByTagsRequest): GetSongsByTagsRequest.AsObject;
@@ -22,6 +32,18 @@ export namespace GetSongsByTagsRequest {
   export type AsObject = {
     tagsMap: Array<[string, string]>,
     filter: Filter,
+    pageToken: number,
+    pageSize: number,
+  }
+
+  export enum PageTokenCase { 
+    _PAGE_TOKEN_NOT_SET = 0,
+    PAGE_TOKEN = 3,
+  }
+
+  export enum PageSizeCase { 
+    _PAGE_SIZE_NOT_SET = 0,
+    PAGE_SIZE = 4,
   }
 }
 
@@ -30,6 +52,12 @@ export class GetSongsByTagsResponse extends jspb.Message {
   setSongsList(value: Array<tensorbeat_common_pb.File>): GetSongsByTagsResponse;
   clearSongsList(): GetSongsByTagsResponse;
   addSongs(value?: tensorbeat_common_pb.File, index?: number): tensorbeat_common_pb.File;
+
+  getNextPageToken(): number;
+  setNextPageToken(value: number): GetSongsByTagsResponse;
+
+  getTotalSize(): number;
+  setTotalSize(value: number): GetSongsByTagsResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSongsByTagsResponse.AsObject;
@@ -42,6 +70,8 @@ export class GetSongsByTagsResponse extends jspb.Message {
 export namespace GetSongsByTagsResponse {
   export type AsObject = {
     songsList: Array<tensorbeat_common_pb.File.AsObject>,
+    nextPageToken: number,
+    totalSize: number,
   }
 }
 
@@ -164,6 +194,16 @@ export namespace RemoveTagsResponse {
 }
 
 export class GetAllSongsRequest extends jspb.Message {
+  getPageToken(): number;
+  setPageToken(value: number): GetAllSongsRequest;
+
+  getPageSize(): number;
+  setPageSize(value: number): GetAllSongsRequest;
+
+  getPageTokenCase(): GetAllSongsRequest.PageTokenCase;
+
+  getPageSizeCase(): GetAllSongsRequest.PageSizeCase;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAllSongsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GetAllSongsRequest): GetAllSongsRequest.AsObject;
@@ -174,6 +214,18 @@ export class GetAllSongsRequest extends jspb.Message {
 
 export namespace GetAllSongsRequest {
   export type AsObject = {
+    pageToken: number,
+    pageSize: number,
+  }
+
+  export enum PageTokenCase { 
+    _PAGE_TOKEN_NOT_SET = 0,
+    PAGE_TOKEN = 1,
+  }
+
+  export enum PageSizeCase { 
+    _PAGE_SIZE_NOT_SET = 0,
+    PAGE_SIZE = 2,
   }
 }
 
@@ -182,6 +234,12 @@ export class GetAllSongsResponse extends jspb.Message {
   setSongsList(value: Array<tensorbeat_common_pb.File>): GetAllSongsResponse;
   clearSongsList(): GetAllSongsResponse;
   addSongs(value?: tensorbeat_common_pb.File, index?: number): tensorbeat_common_pb.File;
+
+  getNextPageToken(): number;
+  setNextPageToken(value: number): GetAllSongsResponse;
+
+  getTotalSize(): number;
+  setTotalSize(value: number): GetAllSongsResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetAllSongsResponse.AsObject;
@@ -194,6 +252,8 @@ export class GetAllSongsResponse extends jspb.Message {
 export namespace GetAllSongsResponse {
   export type AsObject = {
     songsList: Array<tensorbeat_common_pb.File.AsObject>,
+    nextPageToken: number,
+    totalSize: number,
   }
 }
 
@@ -202,6 +262,16 @@ export class GetSongsByIDsRequest extends jspb.Message {
   setIdsList(value: Array<string>): GetSongsByIDsRequest;
   clearIdsList(): GetSongsByIDsRequest;
   addIds(value: string, index?: number): GetSongsByIDsRequest;
+
+  getPageToken(): number;
+  setPageToken(value: number): GetSongsByIDsRequest;
+
+  getPageSize(): number;
+  setPageSize(value: number): GetSongsByIDsRequest;
+
+  getPageTokenCase(): GetSongsByIDsRequest.PageTokenCase;
+
+  getPageSizeCase(): GetSongsByIDsRequest.PageSizeCase;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSongsByIDsRequest.AsObject;
@@ -214,6 +284,18 @@ export class GetSongsByIDsRequest extends jspb.Message {
 export namespace GetSongsByIDsRequest {
   export type AsObject = {
     idsList: Array<string>,
+    pageToken: number,
+    pageSize: number,
+  }
+
+  export enum PageTokenCase { 
+    _PAGE_TOKEN_NOT_SET = 0,
+    PAGE_TOKEN = 2,
+  }
+
+  export enum PageSizeCase { 
+    _PAGE_SIZE_NOT_SET = 0,
+    PAGE_SIZE = 3,
   }
 }
 
@@ -222,6 +304,12 @@ export class GetSongsByIDsResponse extends jspb.Message {
   setSongsList(value: Array<tensorbeat_common_pb.File>): GetSongsByIDsResponse;
   clearSongsList(): GetSongsByIDsResponse;
   addSongs(value?: tensorbeat_common_pb.File, index?: number): tensorbeat_common_pb.File;
+
+  getNextPageToken(): number;
+  setNextPageToken(value: number): GetSongsByIDsResponse;
+
+  getTotalSize(): number;
+  setTotalSize(value: number): GetSongsByIDsResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSongsByIDsResponse.AsObject;
@@ -234,6 +322,8 @@ export class GetSongsByIDsResponse extends jspb.Message {
 export namespace GetSongsByIDsResponse {
   export type AsObject = {
     songsList: Array<tensorbeat_common_pb.File.AsObject>,
+    nextPageToken: number,
+    totalSize: number,
   }
 }
 

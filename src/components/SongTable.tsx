@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
-import BootstrapTable, {BootstrapTableProps, ExpandRowProps} from "react-bootstrap-table-next";
+import BootstrapTable, {
+    ExpandRowProps, TableChangeHandler
+} from "react-bootstrap-table-next";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import {DatalakeServiceClient} from "../gen/grpc-web/tensorbeat/DatalakeServiceClientPb";
 import {GetAllSongsRequest} from "../gen/grpc-web/tensorbeat/datalake_pb";
@@ -31,37 +33,52 @@ function secondsToTimeString(s: number): string {
 export default function SongTable() {
 
     const [songs, setSongs] = useState<SongEntry[]>([]);
+    const [searchTime, setSearchTime] = useState(0);
+    const [totalSongs, setTotalSongs] = useState(0);
+
+    const fetchData = (pageToken: number, pageSize: number, clear: boolean): number => {
+        const client = new DatalakeServiceClient(
+            "http://grpc-web.tensorbeat.com"
+        );
+        let req: GetAllSongsRequest = new GetAllSongsRequest();
+        req.setPageToken(pageToken);
+        req.setPageSize(pageSize);
+        const startTime = Date.now();
+
+        let nextPageToken = 0;
+        client.getAllSongs(req, null).then(res => {
+            setTotalSongs(res.getTotalSize());
+            nextPageToken = res.getNextPageToken();
+            const songsList = res.getSongsList();
+            const loadedSongs : SongEntry[] = [];
+            songsList.forEach(songData => {
+                const tags = songData.getTagsMap();
+                const song: SongEntry = {
+                    id: songData.getId(),
+                    name: songData.getName(),
+                    artist: tags.get("artist"),
+                    genre: tags.get("genre"),
+                    duration: tags.get("duration"),
+                    durationText: secondsToTimeString(tags.get("duration")),
+                    views: tags.get("views"),
+                    likes: tags.get("likes"),
+                    downloadUrl: tags.get("downloadUrl"),
+                    uri: songData.getUri(),
+                }
+                loadedSongs.push(song);
+            })
+            if (clear) {
+                setSongs(loadedSongs);
+            } else {
+                setSongs([...songs, ...loadedSongs]);
+            }
+            setSearchTime(Date.now() - startTime);
+        });
+        return nextPageToken;
+    };
 
     useEffect(() => {
-        const fetchData = () => {
-            const client = new DatalakeServiceClient(
-                "http://grpc-web.tensorbeat.com"
-            );
-            let req: GetAllSongsRequest = new GetAllSongsRequest();
-
-            client.getAllSongs(req, null).then(res => {
-                const songsList = res.getSongsList();
-                const loadedSongs : SongEntry[] = [];
-                songsList.forEach(songData => {
-                    const tags = songData.getTagsMap();
-                    const song: SongEntry = {
-                        id: songData.getId(),
-                        name: songData.getName(),
-                        artist: tags.get("artist"),
-                        genre: tags.get("genre"),
-                        duration: tags.get("duration"),
-                        durationText: secondsToTimeString(tags.get("duration")),
-                        views: tags.get("views"),
-                        likes: tags.get("likes"),
-                        downloadUrl: tags.get("downloadUrl"),
-                        uri: songData.getUri(),
-                    }
-                    loadedSongs.push(song);
-                })
-                setSongs([...songs, ...loadedSongs]);
-            });
-        };
-        fetchData();
+        fetchData(0, 10, true);
     }, []);
 
     const columns = [{
@@ -78,7 +95,7 @@ export default function SongTable() {
         text: "Duration",
     }];
 
-    const expandRow = {
+    const expandRow: ExpandRowProps<SongEntry> = {
         className: "song-row-expand-container",
         renderer: (row: SongEntry) => {
             return (
@@ -95,19 +112,28 @@ export default function SongTable() {
         }
     }
 
+    let currentPageToken = 0;
+    const handleTableChange: TableChangeHandler<SongEntry> = (type: string, {page, sizePerPage}) => {
+        currentPageToken += fetchData(page, sizePerPage, currentPageToken !== page);
+    }
+
     return (
         <div className={"songs-table"}>
-            <BootstrapTable keyField={"id"} data={songs} columns={columns}
+            <BootstrapTable remote={true}
+                            keyField={"id"} data={songs} columns={columns}
                             bootstrap4={true}
                             striped={false}
                             hover={true}
                             expandRow={expandRow}
                             pagination={paginationFactory({
                                 custom: false,
-                                hidePageListOnlyOnePage: true,
                                 showTotal: true,
+                                totalSize: totalSongs,
                             })}
+                            noDataIndication={() => <div className={"loading"}>Loading...</div> }
+                            onTableChange={handleTableChange}
             />
+            {/*<div>{searchTime / 1000} seconds</div>*/}
         </div>
     )
 
