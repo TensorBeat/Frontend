@@ -45,11 +45,11 @@ export default function Page(props: PageProps) {
                   </Link>
                   <Link
                     className={`nav-link ${
-                      props.page === "test" ? "active" : ""
+                      props.page === "keyboard" ? "active" : ""
                     }`}
-                    to={"/"}
+                    to={"/keyboard"}
                   >
-                    Other option
+                    MIDI Keyboard
                   </Link>
                   <Link
                     className={`nav-link ${

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import { Error } from "./pages/Error";
 import Songs from "./pages/Songs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import MIDIKeyboard from "./pages/MIDIKeyboard";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
         <Switch>
           <Route path="/songs">
             <Songs />
+          </Route>
+          <Route path="/keyboard">
+            <MIDIKeyboard />
           </Route>
           <Route path="/">
             <Home />
