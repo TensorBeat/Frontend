@@ -1,17 +1,25 @@
-import React from 'react';
-import './App.css';
-import {useRoutes} from "hookrouter"
+import React from "react";
+import "./App.css";
 import Home from "./pages/Home";
-import {Error} from "./pages/Error";
+import { Error } from "./pages/Error";
 import Songs from "./pages/Songs";
-
-const routes = {
-    "/": () => <Home/>,
-    "/songs": () => <Songs/>,
-}
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-    return useRoutes(routes) ?? <Error code={404}/>;
+  return (
+    (
+      <Router>
+        <Switch>
+          <Route path="/songs">
+            <Songs />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    ) ?? <Error code={404} />
+  );
 }
 
 export default App;
